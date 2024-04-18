@@ -15,17 +15,18 @@ import app.lawnchair.lawnicons.ui.components.core.placeholder.PlaceholderHighlig
 import app.lawnchair.lawnicons.ui.components.core.placeholder.fade
 import app.lawnchair.lawnicons.ui.components.core.placeholder.placeholder
 import app.lawnchair.lawnicons.ui.theme.LawniconsTheme
-import app.lawnchair.lawnicons.ui.util.Elevation
 import app.lawnchair.lawnicons.ui.util.PreviewLawnicons
-import app.lawnchair.lawnicons.ui.util.surfaceColorAtElevation
 
 @Composable
 fun ContributorRowPlaceholder(
+    modifier: Modifier = Modifier,
     first: Boolean = false,
     last: Boolean = false,
     divider: Boolean = true,
 ) {
-    Row {
+    Row(
+        modifier = modifier,
+    ) {
         ListRow(
             divider = divider,
             background = true,
@@ -38,9 +39,7 @@ fun ContributorRowPlaceholder(
                         .placeholder(
                             visible = true,
                             shape = CircleShape,
-                            color = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                                Elevation.Level4,
-                            ),
+                            color = MaterialTheme.colorScheme.surfaceContainerHighest,
                             highlight = PlaceholderHighlight.fade(),
                         ),
                 )
@@ -52,9 +51,7 @@ fun ContributorRowPlaceholder(
                         .height(18.dp)
                         .placeholder(
                             visible = true,
-                            color = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                                Elevation.Level4,
-                            ),
+                            color = MaterialTheme.colorScheme.surfaceContainerHighest,
                             highlight = PlaceholderHighlight.fade(),
                         ),
                 )

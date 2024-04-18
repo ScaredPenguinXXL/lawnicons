@@ -32,8 +32,6 @@ import app.lawnchair.lawnicons.ui.components.core.LawniconsScaffold
 import app.lawnchair.lawnicons.ui.components.core.placeholder.PlaceholderHighlight
 import app.lawnchair.lawnicons.ui.components.core.placeholder.fade
 import app.lawnchair.lawnicons.ui.components.core.placeholder.placeholder
-import app.lawnchair.lawnicons.ui.util.Elevation
-import app.lawnchair.lawnicons.ui.util.surfaceColorAtElevation
 import app.lawnchair.lawnicons.viewmodel.AcknowledgementViewModel
 
 @Composable
@@ -41,6 +39,7 @@ fun Acknowledgement(
     name: String?,
     onBack: () -> Unit,
     isExpandedScreen: Boolean,
+    modifier: Modifier = Modifier,
     acknowledgementViewModel: AcknowledgementViewModel = hiltViewModel(),
 ) {
     requireNotNull(name)
@@ -54,6 +53,7 @@ fun Acknowledgement(
     ).collectAsState()
 
     LawniconsScaffold(
+        modifier = modifier,
         title = name,
         onBack = onBack,
         isExpandedScreen = isExpandedScreen,
@@ -105,9 +105,7 @@ fun Acknowledgement(
                                     .placeholder(
                                         visible = true,
                                         highlight = PlaceholderHighlight.fade(),
-                                        color = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                                            Elevation.Level2,
-                                        ),
+                                        color = MaterialTheme.colorScheme.surfaceContainer,
                                     ),
                             )
                         }
