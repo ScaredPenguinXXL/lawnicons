@@ -25,7 +25,7 @@ val ciRunNumber = providers.environmentVariable("GITHUB_RUN_NUMBER").orNull.orEm
 val isReleaseBuild = ciBuild && ciRef.contains("main")
 val devReleaseName = if (ciBuild) "(Dev #$ciRunNumber)" else "($buildCommit)"
 
-val version = "2.8.0"
+val version = "2.9.0"
 val versionDisplayName = "$version ${if (isReleaseBuild) "" else devReleaseName}"
 
 android {
@@ -36,7 +36,7 @@ android {
         applicationId = "app.lawnchair.lawnicons"
         minSdk = 26
         targetSdk = 34
-        versionCode = 11
+        versionCode = 12
         versionName = versionDisplayName
         vectorDrawables.useSupportLibrary = true
     }
@@ -55,14 +55,18 @@ android {
         signingConfigs["debug"]
     }
 
+    androidResources {
+        generateLocaleConfig = true
+    }
+
     buildTypes {
+        all {
+            signingConfig = releaseSigning
+            isPseudoLocalesEnabled = true
+        }
         release {
             isMinifyEnabled = true
-            signingConfig = releaseSigning
             proguardFiles("proguard-rules.pro")
-        }
-        debug {
-            signingConfig = releaseSigning
         }
     }
 
@@ -146,7 +150,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-core-android:1.6.6")
     implementation("androidx.compose.material3:material3:1.3.0-alpha05")
     implementation("androidx.compose.material3:material3-window-size-class")
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.navigation:navigation-compose:2.8.0-alpha07")
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
