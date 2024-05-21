@@ -52,7 +52,9 @@ fun IconInfoPopup(
             isPopupShown(false)
         },
         sheetState = sheetState,
-        windowInsets = WindowInsets(0.dp),
+        contentWindowInsets = {
+            WindowInsets(0.dp)
+        },
         modifier = modifier
             .navigationBarsPadding(),
     ) {
@@ -107,7 +109,7 @@ fun IconInfoPopup(
             ) {
                 SimpleListRow(
                     label = githubName,
-                    description = "If the icon is outdated due to rebranding, create an issue on GitHub.",
+                    description = stringResource(R.string.icon_info_outdated_warning),
                     divider = false,
                 )
             }
